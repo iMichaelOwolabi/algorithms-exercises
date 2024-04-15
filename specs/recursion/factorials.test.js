@@ -10,7 +10,26 @@
   factorial(3) = 6 
 */
 
-function factorial(n) {}
+function factorial(n) {
+  // Mine
+  // let ans = 1;
+  // while (n > 0) {
+  //   ans *= n;
+  //   if (n === 1) {
+  //     return ans;
+  //   } else {
+  //     n--;
+  //     factorial(n);
+  //   }
+  // }
+
+  // Second implementation
+  if (n < 2) {
+    return 1
+  }
+
+  return n * factorial(n - 1);
+}
 
 // unit tests
 // do not modify the below code
