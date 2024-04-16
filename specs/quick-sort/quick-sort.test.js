@@ -14,11 +14,30 @@
 
 function quickSort(nums) {
   // code goes here
+  if (nums.length < 2) {
+    return nums;
+  }
+
+  // Get the pivot from the end ofthe list
+  let pivot = nums.pop();
+  let leftArray = [];
+  let rightArray = [];
+
+  // Compare every element of the array with the pivot and separate them into two groups of less than the pivot and greater than the pivot
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] <= pivot) {
+      leftArray.push(nums[i]);
+    } else {
+      rightArray.push(nums[i]);
+    }
+  }
+
+  return [...quickSort(leftArray), pivot, ...quickSort(rightArray)];
 }
 
 // unit tests
 // do not modify the below code
-test.skip("quickSort", function () {
+test("quickSort", function () {
   const input = [10, 8, 2, 1, 6, 3, 9, 4, 7, 5];
   const answer = quickSort(input);
 
