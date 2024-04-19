@@ -5,10 +5,38 @@
 
 function linearSearch(id, array) {
   // code goes here
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].id === id) {
+      return array[i];
+    }
+  }
+  return 'ID not found';
 }
 
 function binarySearch(id, array) {
   // code goes here
+  let i = 0;
+
+  while (array.length > 1) {
+    i += 1;
+  let middleOfArray = Math.floor(array.length / 2);
+  let middleElement = array[middleOfArray];
+  let splittedArray;
+
+  if (id === middleElement.id) {
+    return middleElement;
+  }
+
+  // Go left if the id is greater than the middle of array otherwise, go right.
+  if (id > middleOfArray.id) {
+    splittedArray = array.splice(0, middleOfArray)
+  } else {
+    splittedArray = array.splice(middleOfArray);
+  }
+  array = splittedArray;
+}
+
+return 'Element not found';
 }
 
 // unit tests
@@ -35,7 +63,7 @@ test.skip("linear search", function () {
   ).toBe(lookingFor);
 });
 
-test.skip("binary search", function () {
+test("binary search", function () {
   const lookingFor = { id: 23, name: "Brian" };
   expect(
     binarySearch(23, [
