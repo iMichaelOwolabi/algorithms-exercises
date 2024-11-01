@@ -19,16 +19,50 @@
 
 class ArrayList {
   // code goes here
+  constructor() {
+    this.data = {};
+    this.length = 0;
+  }
+
+  push(value) {
+    this.data[this.length] = value;
+    this.length += 1;
+  }
+
+  get(index) {
+    return this.data[index];
+  }
+
+  pop() {
+    const elementToRemove = this.data[this.length - 1]
+    delete this.data[this.length - 1];
+    this.length -= 1;
+    return elementToRemove;
+  }
+
+  delete(index) {
+    const toBeDeleted = this.data[index];
+    this._collapseTo(index);
+    return toBeDeleted;
+  }
+
+  _collapseTo(index) {
+    for (let i = index; i < this.length; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+    delete this.data[this.length - 1];
+    this.length -= 1;
+  }
 }
 
 // unit tests
 // do not modify the below code
-describe.skip("ArrayList", function () {
+describe("ArrayList", function () {
   const range = (length) =>
     Array.apply(null, { length: length }).map(Number.call, Number);
   const abcRange = (length) =>
     range(length).map((num) => String.fromCharCode(97 + num));
-  let list;
+  let list;``
 
   beforeEach(() => {
     list = new ArrayList();
